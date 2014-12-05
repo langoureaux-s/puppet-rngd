@@ -55,27 +55,27 @@ the fancy stuff with your module here.
 
 ### Parameters
 
-####`package\_ensure`
+####`package_ensure`
 
 Intended state of the package providing the rngd daemon.
 
-####`package\_name`
+####`package_name`
 
 The package name that provides the rngd daemon.
 
-####`service\_enable`
+####`service_enable`
 
 Whether to enable the rngd service.
 
-####`service\_ensure`
+####`service_ensure`
 
 Intended state of the rngd service.
 
-####`service\_manage`
+####`service_manage`
 
 Whether to manage the rngd service or not.
 
-####`service\_name`
+####`service_name`
 
 The name of the rngd service.
 
