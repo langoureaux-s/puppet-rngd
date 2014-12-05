@@ -1,0 +1,60 @@
+{
+  "name": "bodgit-rngd",
+  "version": "1.0.0",
+  "author": "bodgit",
+  "summary": "Puppet Module for managing rngd",
+  "license": "Apache 2.0",
+  "source": "https://github.com/bodgit/bodgit-rngd",
+  "project_page": "https://github.com/bodgit/bodgit-rngd",
+  "issues_url": "https://github.com/bodgit/bodgit-rngd/issues",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ],
+  "tags": [
+    "rngd",
+    "entropy"
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 2.0.0"
+    }
+  ]
+}
