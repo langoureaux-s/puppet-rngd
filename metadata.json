@@ -4,9 +4,9 @@
   "author": "bodgit",
   "summary": "Puppet Module for managing rngd",
   "license": "Apache 2.0",
-  "source": "https://github.com/bodgit/bodgit-rngd",
-  "project_page": "https://github.com/bodgit/bodgit-rngd",
-  "issues_url": "https://github.com/bodgit/bodgit-rngd/issues",
+  "source": "https://github.com/bodgit/puppet-rngd",
+  "project_page": "https://github.com/bodgit/puppet-rngd",
+  "issues_url": "https://github.com/bodgit/puppet-rngd/issues",
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
