@@ -2,7 +2,7 @@
 
 Tested with Travis CI
 
-[![Build Status](https://travis-ci.org/bodgit/bodgit-rngd.svg?branch=master)](https://travis-ci.org/bodgit/bodgit-rngd)
+[![Build Status](https://travis-ci.org/bodgit/puppet-rngd.svg?branch=master)](https://travis-ci.org/bodgit/puppet-rngd)
 
 #### Table of Contents
 
