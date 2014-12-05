@@ -31,6 +31,7 @@ describe 'rngd' do
       end
 
       it do
+        should contain_class('rngd')
         should contain_package('rng-utils')
         should_not contain_service('rngd')
       end
@@ -47,6 +48,7 @@ describe 'rngd' do
         end
 
         it do
+          should contain_class('rngd')
           should contain_package('rng-tools')
           should contain_service('rngd').with(
             'ensure' => 'running',
