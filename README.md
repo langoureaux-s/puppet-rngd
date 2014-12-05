@@ -41,8 +41,13 @@ include ::rngd
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+If you want to use something else to manage the rngd daemon, you can do:
+
+```puppet
+class { '::rngd':
+  service_manage => false,
+}
+```
 
 ## Reference
 
