@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "bodgit",
   "summary": "Puppet Module for managing rngd",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/bodgit/puppet-rngd",
   "project_page": "https://github.com/bodgit/puppet-rngd",
   "issues_url": "https://github.com/bodgit/puppet-rngd/issues",
