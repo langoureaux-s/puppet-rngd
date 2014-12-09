@@ -2,6 +2,7 @@
 
 Tested with Travis CI
 
+[![Puppet Forge](http://img.shields.io/puppetforge/v/bodgit/rngd.svg)](https://forge.puppetlabs.com/bodgit/rngd)
 [![Build Status](https://travis-ci.org/bodgit/puppet-rngd.svg?branch=master)](https://travis-ci.org/bodgit/puppet-rngd)
 
 #### Table of Contents
