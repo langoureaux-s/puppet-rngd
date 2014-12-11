@@ -38,7 +38,7 @@ describe 'rngd' do
     end
 
     [6, 7].each do |version|
-      context 'version #{version}', :compile do
+      context "version #{version}", :compile do
         let(:facts) do
           super().merge(
             {
