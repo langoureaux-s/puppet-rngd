@@ -3,7 +3,7 @@ require 'puppet-lint/tasks/puppet-lint'
 require 'rake/clean'
 
 CLEAN.include('spec/fixtures/manifests', 'spec/fixtures/modules')
-CLOBBER.include('.tmp', '.librarian', 'Puppetfile.lock')
+CLOBBER.include('.tmp', '.librarian', '.vagrant', 'Puppetfile.lock', 'log', 'junit')
 
 task :spec => []; Rake::Task[:spec].clear
 task :spec do
@@ -17,6 +17,7 @@ end
 task :spec_prep => :librarian_spec_prep
 
 task :test => [
+  'metadata_lint',
   'syntax',
   'spec',
   'lint',
@@ -26,5 +27,6 @@ PuppetLint.configuration.log_format = '%{path}:%{linenumber}:%{check}:%{KIND}:%{
 PuppetLint.configuration.ignore_paths = ['spec/**/*.pp']
 PuppetLint.configuration.fail_on_warnings = true
 PuppetLint.configuration.relative = true
+PuppetLint.configuration.send('disable_class_inherits_from_params_class')
 
 PuppetSyntax.exclude_paths = ['spec/**/*.pp']

@@ -2,8 +2,10 @@
 
 Tested with Travis CI
 
-[![Puppet Forge](http://img.shields.io/puppetforge/v/bodgit/rngd.svg)](https://forge.puppetlabs.com/bodgit/rngd)
 [![Build Status](https://travis-ci.org/bodgit/puppet-rngd.svg?branch=master)](https://travis-ci.org/bodgit/puppet-rngd)
+[![Coverage Status](https://coveralls.io/repos/bodgit/puppet-rngd/badge.svg?branch=master&service=github)](https://coveralls.io/github/bodgit/puppet-rngd?branch=master)
+[![Puppet Forge](http://img.shields.io/puppetforge/v/bodgit/rngd.svg)](https://forge.puppetlabs.com/bodgit/rngd)
+[![Dependency Status](https://gemnasium.com/bodgit/puppet-rngd.svg)](https://gemnasium.com/bodgit/puppet-rngd)
 
 #### Table of Contents
 
@@ -87,8 +89,7 @@ The name of the rngd service.
 
 ## Limitations
 
-This module has been built on and tested against Puppet 2.7 and higher.
-Puppet 2.7 support is slated for removal at the next major version.
+This module has been built on and tested against Puppet 3.0 and higher.
 
 The module has been tested on:
 
@@ -98,4 +99,5 @@ Testing on other platforms has been light and cannot be guaranteed.
 
 ## Authors
 
-* Matt Dainty <matt@bodgit-n-scarper.com>
+Please log issues or pull requests at
+[github](https://github.com/bodgit/puppet-rngd).

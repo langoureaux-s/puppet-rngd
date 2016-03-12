@@ -9,51 +9,31 @@ describe 'rngd' do
       }
     end
 
-    it do
-      expect { subject }.to raise_error(/not supported on an Unsupported/)
-    end
+    it { expect { should compile }.to raise_error(/not supported on an Unsupported/) }
   end
 
-  context 'on RedHat' do
-    let(:facts) do
-      {
-        :osfamily => 'RedHat'
-      }
-    end
-
-    context 'version 5', :compile do
+  on_supported_os.each do |os, facts|
+    context "on #{os}", :compile do
       let(:facts) do
-        super().merge(
-          {
-            :operatingsystemmajrelease => 5,
-          }
-        )
+        facts
       end
 
-      it do
-        should contain_class('rngd')
-        should contain_package('rng-utils')
-        should_not contain_service('rngd')
-      end
-    end
+      it { should contain_anchor('rngd::begin') }
+      it { should contain_anchor('rngd::end') }
+      it { should contain_class('rngd') }
+      it { should contain_class('rngd::install') }
+      it { should contain_class('rngd::params') }
+      it { should contain_class('rngd::service') }
 
-    [6, 7].each do |version|
-      context "version #{version}", :compile do
-        let(:facts) do
-          super().merge(
-            {
-              :operatingsystemmajrelease => version,
-            }
-          )
-        end
-
-        it do
-          should contain_class('rngd')
-          should contain_package('rng-tools')
-          should contain_service('rngd').with(
-            'ensure' => 'running',
-            'enable' => true
-          )
+      case facts[:osfamily]
+      when 'RedHat'
+        case facts[:operatingsystemmajrelease]
+        when '5'
+          it { should contain_package('rng-utils') }
+          it { should_not contain_service('rngd') }
+        else
+          it { should contain_package('rng-tools') }
+          it { should contain_service('rngd') }
         end
       end
     end
