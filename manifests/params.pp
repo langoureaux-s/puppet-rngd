@@ -4,12 +4,12 @@ class rngd::params {
   case $::osfamily {
     'RedHat': {
       case $::operatingsystemmajrelease {
-        5: {
+        '5': {
           # The package is different and lacks an init script on 5.x
           $package_name   = 'rng-utils'
           $service_manage = false
         }
-        6, 7: {
+        '6', '7': {
           $package_name   = 'rng-tools'
           $service_manage = true
         }
