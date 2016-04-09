@@ -49,7 +49,7 @@ include ::rngd
 
 ### Classes and Defined Types
 
-#### Class: `sasl`
+#### Class: `rngd`
 
 **Parameters within `rngd`:**
 
