@@ -39,6 +39,20 @@
         "6",
         "7"
       ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.04",
+        "14.04"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
     }
   ],
   "requirements": [
@@ -58,7 +72,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">=2.0.0 <5.0.0"
+      "version_requirement": ">=4.6.0 <5.0.0"
     }
   ]
 }

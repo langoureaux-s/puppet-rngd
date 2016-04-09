@@ -1,6 +1,10 @@
 #
 class rngd::params {
 
+  $package_ensure = 'installed'
+  $service_enable = true
+  $service_ensure = 'running'
+
   case $::osfamily {
     'RedHat': {
       case $::operatingsystemmajrelease {
@@ -9,18 +13,19 @@ class rngd::params {
           $package_name   = 'rng-utils'
           $service_manage = false
         }
-        '6', '7': {
+        default: {
           $package_name   = 'rng-tools'
           $service_manage = true
         }
-        default: {
-          fail("The ${module_name} module is not support on an ${::osfamily} ${::operatingsystemmajrelease} based system.") # lint:ignore:80chars
-        }
       }
-      $package_ensure = 'installed'
-      $service_enable = true
-      $service_ensure = 'running'
-      $service_name   = 'rngd'
+      $hasstatus    = true
+      $service_name = 'rngd'
+    }
+    'Debian': {
+      $hasstatus      = false
+      $package_name   = 'rng-tools'
+      $service_manage = true
+      $service_name   = 'rng-tools'
     }
     default: {
       fail("The ${module_name} module is not supported on an ${::osfamily} based system.") # lint:ignore:80chars

@@ -5,6 +5,14 @@
 #
 # === Parameters
 #
+# [*hasstatus*]
+#   Does the rngd service support status.
+#   Default: true
+#
+# [*hwrng_device*]
+#   Kernel device to read random number input from.
+#   Default: undef
+#
 # [*package_ensure*]
 #   Intended state of the package providing the rngd daemon.
 #   Default: installed
@@ -43,9 +51,11 @@
 #
 # === Copyright
 #
-# Copyright 2014 Matt Dainty, unless otherwise noted.
+# Copyright 2016 Matt Dainty, unless otherwise noted.
 #
 class rngd (
+  $hasstatus      = $::rngd::params::hasstatus,
+  $hwrng_device   = undef,
   $package_ensure = $::rngd::params::package_ensure,
   $package_name   = $::rngd::params::package_name,
   $service_enable = $::rngd::params::service_enable,
@@ -56,17 +66,22 @@ class rngd (
 
   validate_string($package_ensure)
   validate_string($package_name)
+  if $hwrng_device {
+    validate_absolute_path($hwrng_device)
+  }
   validate_bool($service_enable)
   validate_re($service_ensure, '^(running|stopped)$')
   validate_bool($service_manage)
   validate_string($service_name)
 
   include ::rngd::install
+  include ::rngd::config
   include ::rngd::service
 
   anchor { 'rngd::begin': }
   anchor { 'rngd::end': }
 
   Anchor['rngd::begin'] -> Class['::rngd::install']
-    ~> Class['::rngd::service'] -> Anchor['rngd::end']
+    ~> Class['::rngd::config'] ~> Class['::rngd::service']
+    -> Anchor['rngd::end']
 }
