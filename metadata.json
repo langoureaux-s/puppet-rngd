@@ -1,6 +1,6 @@
 {
   "name": "bodgit-rngd",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "bodgit",
   "summary": "Puppet Module for managing rngd",
   "license": "Apache-2.0",
