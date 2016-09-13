@@ -35,12 +35,12 @@ class rngd::config {
           })
 
           file { '/etc/systemd/system/rngd.service.d/override.conf':
-            ensure  => file,
-            owner   => 0,
-            group   => 0,
-            mode    => '0644',
-            content => file('rngd/override.conf'),
-            notify  => Exec['systemctl daemon-reload'],
+            ensure => file,
+            owner  => 0,
+            group  => 0,
+            mode   => '0644',
+            source => 'puppet:///modules/rngd/override.conf', # lint:ignore:fileserver
+            notify => Exec['systemctl daemon-reload'],
           }
         }
       }

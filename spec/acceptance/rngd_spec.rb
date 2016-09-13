@@ -37,6 +37,14 @@ describe 'rngd' do
     its(:content) { should match /^EXTRAOPTIONS="-r \/dev\/urandom"$/ }
   end
 
+  describe file('/etc/systemd/system/rngd.service.d/override.conf'), :if => (fact('osfamily') == 'RedHat' and fact('operatingsystemmajrelease') > '6') do
+    it { should be_file }
+    it { should be_mode 644 }
+    it { should be_owned_by 'root' }
+    it { should be_grouped_into 'root' }
+    its(:sha256sum) { should eq 'cb063edc0c2891008c930c1da1f7187b3eeb5521602939678bb0f2f4e2977259' }
+  end
+
   describe service(service), :if => (fact('osfamily') == 'RedHat' and fact('operatingsystemmajrelease').to_i > 5) do
     it { should be_enabled }
     it { should be_running }
