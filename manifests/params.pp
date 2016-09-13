@@ -28,7 +28,7 @@ class rngd::params {
       $service_name   = 'rng-tools'
     }
     default: {
-      fail("The ${module_name} module is not supported on an ${::osfamily} based system.") # lint:ignore:80chars
+      fail("The ${module_name} module is not supported on an ${::osfamily} based system.")
     }
   }
 }
