@@ -1,9 +1,9 @@
-#
+# @!visibility private
 class rngd::config {
 
   $hwrng_device = $::rngd::hwrng_device
 
-  case $::osfamily { # lint:ignore:case_without_default
+  case $::osfamily {
     'RedHat': {
       $options = delete_undef_values([
         $hwrng_device ? {
@@ -20,28 +20,26 @@ class rngd::config {
         content => template('rngd/sysconfig.erb'),
       }
 
-      case $::operatingsystemmajrelease { # lint:ignore:case_without_default
-        '7': {
-          file { '/etc/systemd/system/rngd.service.d':
-            ensure => directory,
-            owner  => 0,
-            group  => 0,
-            mode   => '0644',
-          }
+      if $::operatingsystemmajrelease == '7' {
+        file { '/etc/systemd/system/rngd.service.d':
+          ensure => directory,
+          owner  => 0,
+          group  => 0,
+          mode   => '0644',
+        }
 
-          ensure_resource('exec', 'systemctl daemon-reload', {
-            refreshonly => true,
-            path        => $::path,
-          })
+        ensure_resource('exec', 'systemctl daemon-reload', {
+          refreshonly => true,
+          path        => $::path,
+        })
 
-          file { '/etc/systemd/system/rngd.service.d/override.conf':
-            ensure => file,
-            owner  => 0,
-            group  => 0,
-            mode   => '0644',
-            source => 'puppet:///modules/rngd/override.conf', # lint:ignore:fileserver
-            notify => Exec['systemctl daemon-reload'],
-          }
+        file { '/etc/systemd/system/rngd.service.d/override.conf':
+          ensure  => file,
+          owner   => 0,
+          group   => 0,
+          mode    => '0644',
+          content => file('rngd/override.conf'),
+          notify  => Exec['systemctl daemon-reload'],
         }
       }
     }
@@ -53,6 +51,9 @@ class rngd::config {
         mode    => '0644',
         content => template('rngd/default.erb'),
       }
+    }
+    default: {
+      # noop
     }
   }
 }

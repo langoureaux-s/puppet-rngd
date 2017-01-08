@@ -7,39 +7,32 @@ Tested with Travis CI
 [![Puppet Forge](http://img.shields.io/puppetforge/v/bodgit/rngd.svg)](https://forge.puppetlabs.com/bodgit/rngd)
 [![Dependency Status](https://gemnasium.com/bodgit/puppet-rngd.svg)](https://gemnasium.com/bodgit/puppet-rngd)
 
+
 #### Table of Contents
 
-1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with rngd](#setup)
-    * [What rngd affects](#what-rngd-affects)
+1. [Description](#description)
+2. [Setup - The basics of getting started with rngd](#setup)
     * [Beginning with rngd](#beginning-with-rngd)
-4. [Usage - Configuration options and additional functionality](#usage)
-    * [Classes and Defined Types](#classes-and-defined-types)
-        * [Class: rngd](#class-rngd)
-    * [Examples](#examples)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+3. [Usage - Configuration options and additional functionality](#usage)
+4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
-## Overview
+## Description
 
 This module manages rngd.
 
-## Module Description
-
 The module basically makes sure the rngd daemon is installed and started,
 that's pretty much it. The rngd daemon does a good job at working out where
-the source of hardware entropy is so there's no configuration required.
+the source of hardware entropy is so there's little configuration required.
+
+RHEL/CentOS, Ubuntu and Debian are supported using Puppet 4.4.0 or later.
 
 ## Setup
 
-### What rngd affects
-
-* The package containing the rngd daemon.
-* The service controlling the rngd daemon.
-
 ### Beginning with rngd
+
+In the very simplest case, you can just include the following:
 
 ```puppet
 include ::rngd
@@ -47,47 +40,7 @@ include ::rngd
 
 ## Usage
 
-### Classes and Defined Types
-
-#### Class: `rngd`
-
-**Parameters within `rngd`:**
-
-##### `hasstatus`
-
-Whether the rngd service supports the status command or not.
-
-##### `hwrng_device`
-
-Specify the kernel device for random number input.
-
-##### `package_ensure`
-
-Intended state of the package providing the rngd daemon.
-
-##### `package_name`
-
-The package name that provides the rngd daemon.
-
-##### `service_enable`
-
-Whether to enable the rngd service.
-
-##### `service_ensure`
-
-Intended state of the rngd service.
-
-##### `service_manage`
-
-Whether to manage the rngd service or not.
-
-##### `service_name`
-
-The name of the rngd service.
-
-### Examples
-
-To configure rngd to use `/dev/urandom` for random number input:
+For example to configure rngd to use `/dev/urandom` for random number input:
 
 ```puppet
 class { '::rngd':
@@ -105,32 +58,30 @@ class { '::rngd':
 
 ## Reference
 
-### Classes
-
-#### Public Classes
-
-* [`rngd`](#class-rngd): Main class for installing rngd daemon.
-
-#### Private Classes
-
-* `rngd::config`: Handles rngd daemon configuration.
-* `rngd::install`: Handles rngd daemon installation.
-* `rngd::params`: Different configuration data for different systems.
-* `rngd::service`: Handles rngd daemon service.
+The reference documentation is now generated with
+[puppet-strings](https://github.com/puppetlabs/puppet-strings) and the latest
+version is hosted [here](http://bodgit.github.io/puppet-rngd/).
 
 ## Limitations
 
-This module has been built on and tested against Puppet 3.0 and higher.
+This module has been built on and tested against Puppet 4.4.0 and higher.
 
 The module has been tested on:
 
 * RedHat Enterprise Linux 5/6/7
-* Ubuntu 12.04/14.04
-* Debian 6/7
+* Ubuntu 12.04/14.04/16.04
+* Debian 6/7/8
 
-Testing on other platforms has been light and cannot be guaranteed.
+## Development
 
-## Authors
+The module has both [rspec-puppet](http://rspec-puppet.com) and
+[beaker-rspec](https://github.com/puppetlabs/beaker-rspec) tests. Run them
+with:
+
+```
+$ bundle exec rake test
+$ PUPPET_INSTALL_TYPE=agent PUPPET_INSTALL_VERSION=x.y.z bundle exec rake beaker:<nodeset>
+```
 
 Please log issues or pull requests at
 [github](https://github.com/bodgit/puppet-rngd).

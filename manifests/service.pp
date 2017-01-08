@@ -1,18 +1,19 @@
-#
+# @!visibility private
 class rngd::service {
 
   $hasstatus = $::rngd::hasstatus
+  $pattern   = $hasstatus ? {
+    false   => 'rngd',
+    default => undef,
+  }
 
   if $::rngd::service_manage {
     service { $::rngd::service_name:
-      ensure     => $::rngd::service_ensure,
-      enable     => $::rngd::service_enable,
+      ensure     => running,
+      enable     => true,
       hasstatus  => $hasstatus,
       hasrestart => true,
-      pattern    => $hasstatus ? { # lint:ignore:selector_inside_resource
-        false   => 'rngd',
-        default => undef,
-      },
+      pattern    => $pattern,
     }
   }
 }

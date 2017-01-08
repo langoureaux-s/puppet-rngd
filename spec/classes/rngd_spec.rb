@@ -37,7 +37,7 @@ describe 'rngd' do
           it { should contain_file('/etc/systemd/system/rngd.service.d') }
           it { should contain_file('/etc/systemd/system/rngd.service.d/override.conf') }
           it { should contain_package('rng-tools') }
-          it { should contain_service('rngd') }
+          it { should contain_service('rngd').with_hasstatus(true) }
         else
           it { should contain_package('rng-tools') }
           it { should contain_service('rngd') }
@@ -46,7 +46,22 @@ describe 'rngd' do
       when 'Debian'
         it { should contain_file('/etc/default/rng-tools') }
         it { should contain_package('rng-tools') }
-        it { should contain_service('rng-tools') }
+        case facts[:operatingsystem]
+        when 'Ubuntu'
+          case facts[:operatingsystemrelease]
+          when '12.04', '14.04'
+            it { should contain_service('rng-tools').with_hasstatus(false) }
+          else
+            it { should contain_service('rng-tools').with_hasstatus(true) }
+          end
+        else
+          case facts[:operatingsystemmajrelease]
+          when '6', '7'
+            it { should contain_service('rng-tools').with_hasstatus(false) }
+          else
+            it { should contain_service('rng-tools').with_hasstatus(true) }
+          end
+        end
       end
     end
   end
