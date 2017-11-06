@@ -7,7 +7,6 @@ Tested with Travis CI
 [![Puppet Forge](http://img.shields.io/puppetforge/v/bodgit/rngd.svg)](https://forge.puppetlabs.com/bodgit/rngd)
 [![Dependency Status](https://gemnasium.com/bodgit/puppet-rngd.svg)](https://gemnasium.com/bodgit/puppet-rngd)
 
-
 #### Table of Contents
 
 1. [Description](#description)
@@ -58,9 +57,10 @@ class { '::rngd':
 
 ## Reference
 
-The reference documentation is now generated with
+The reference documentation is generated with
 [puppet-strings](https://github.com/puppetlabs/puppet-strings) and the latest
-version is hosted [here](http://bodgit.github.io/puppet-rngd/).
+version of the documentation is hosted at
+[https://bodgit.github.io/puppet-rngd/](https://bodgit.github.io/puppet-rngd/).
 
 ## Limitations
 
