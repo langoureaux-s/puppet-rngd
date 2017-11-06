@@ -18,8 +18,6 @@ describe 'rngd' do
         facts
       end
 
-      it { should contain_anchor('rngd::begin') }
-      it { should contain_anchor('rngd::end') }
       it { should contain_class('rngd') }
       it { should contain_class('rngd::config') }
       it { should contain_class('rngd::install') }

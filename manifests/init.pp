@@ -21,13 +21,10 @@ class rngd (
   String                         $service_name   = $::rngd::params::service_name
 ) inherits ::rngd::params {
 
-  include ::rngd::install
-  include ::rngd::config
-  include ::rngd::service
+  contain ::rngd::install
+  contain ::rngd::config
+  contain ::rngd::service
 
-  anchor { 'rngd::begin': }
-  anchor { 'rngd::end': }
-
-  Anchor['rngd::begin'] -> Class['::rngd::install'] ~> Class['::rngd::config']
-    ~> Class['::rngd::service'] -> Anchor['rngd::end']
+  Class['::rngd::install'] -> Class['::rngd::config']
+    ~> Class['::rngd::service']
 }
