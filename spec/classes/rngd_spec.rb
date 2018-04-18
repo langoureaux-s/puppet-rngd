@@ -36,6 +36,11 @@ describe 'rngd' do
           it { should contain_file('/etc/systemd/system/rngd.service.d/override.conf') }
           it { should contain_package('rng-tools') }
           it { should contain_service('rngd').with_hasstatus(true) }
+          case facts[:selinux]
+          when true
+            it { should contain_file('/etc/systemd/system/rngd.service.d').with_seltype('systemd_unit_file_t') }
+            it { should contain_file('/etc/systemd/system/rngd.service.d/override.conf').with_seltype('rngd_unit_file_t') }
+          end
         else
           it { should contain_package('rng-tools') }
           it { should contain_service('rngd') }

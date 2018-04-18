@@ -21,11 +21,23 @@ class rngd::config {
       }
 
       if $::operatingsystemmajrelease == '7' {
+
+        $directory_seltype = $::selinux ? {
+          true    => 'systemd_unit_file_t',
+          default => undef,
+        }
+
+        $file_seltype = $::selinux ? {
+          true    => 'rngd_unit_file_t',
+          default => undef,
+        }
+
         file { '/etc/systemd/system/rngd.service.d':
-          ensure => directory,
-          owner  => 0,
-          group  => 0,
-          mode   => '0644',
+          ensure  => directory,
+          owner   => 0,
+          group   => 0,
+          mode    => '0644',
+          seltype => $directory_seltype,
         }
 
         ensure_resource('exec', 'systemctl daemon-reload', {
@@ -39,6 +51,7 @@ class rngd::config {
           group   => 0,
           mode    => '0644',
           content => file('rngd/override.conf'),
+          seltype => $file_seltype,
           notify  => Exec['systemctl daemon-reload'],
         }
       }
