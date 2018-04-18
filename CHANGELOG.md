@@ -1,5 +1,13 @@
 # Change Log
 
+## [v2.0.2](https://github.com/bodgit/puppet-rngd/tree/v2.0.2) (2018-04-18)
+[Full Changelog](https://github.com/bodgit/puppet-rngd/compare/v2.0.1...v2.0.2)
+
+**Implemented enhancements:**
+
+- Debian 9 [\#8](https://github.com/bodgit/puppet-rngd/issues/8)
+- Manage SELinux properties [\#6](https://github.com/bodgit/puppet-rngd/issues/6)
+
 ## [v2.0.1](https://github.com/bodgit/puppet-rngd/tree/v2.0.1) (2017-11-06)
 [Full Changelog](https://github.com/bodgit/puppet-rngd/compare/v2.0.0...v2.0.1)
 
