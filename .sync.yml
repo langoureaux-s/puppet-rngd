@@ -1,0 +1,65 @@
+---
+.gitignore:
+  paths:
+    - /update_report.txt
+    - /Puppetfile.lock
+    - /.librarian/
+    - /.tmp/
+
+.pdkignore:
+  paths:
+    - /update_report.txt
+    - /Puppetfile.lock
+    - /.librarian/
+    - /.tmp/
+
+.travis.yml:
+  ruby_versions:
+    - 2.1.9
+    - 2.4.1
+    - 2.4.3
+  env:
+    - PUPPET_GEM_VERSION="~> 4.4.0" CHECK=spec
+    - PUPPET_GEM_VERSION="~> 4.5.0" CHECK=spec
+    - PUPPET_GEM_VERSION="~> 4.6.0" CHECK=spec
+    - PUPPET_GEM_VERSION="~> 4.7.0" CHECK=spec
+    - PUPPET_GEM_VERSION="~> 4.8.0" CHECK=spec
+    - PUPPET_GEM_VERSION="~> 4.9.0" CHECK=spec
+    - PUPPET_GEM_VERSION="~> 4.10.0" CHECK=spec
+
+Gemfile:
+  required:
+    ':system_tests':
+      - gem: beaker
+        version: '>= 3.0.0'
+      - gem: beaker-rspec
+        version: '>= 6.0.0'
+    ':development':
+      - gem: coveralls
+      - gem: github_changelog_generator
+      - gem: librarian-puppet
+      - gem: puppet-lint-absolute_classname-check
+      - gem: puppet-lint-alias-check
+      - gem: puppet-lint-empty_string-check
+      - gem: puppet-lint-file_ensure-check
+      - gem: puppet-lint-file_source_rights-check
+      - gem: puppet-lint-fileserver-check
+        git: 'https://github.com/bodgit/puppet-lint-fileserver-check.git'
+        branch: 'puppet-lint-2.x'
+      - gem: puppet-lint-leading_zero-check
+      - gem: puppet-lint-spaceship_operator_without_tag-check
+      - gem: puppet-lint-trailing_comma-check
+      - gem: puppet-lint-undef_in_function-check
+      - gem: puppet-lint-unquoted_string-check
+      - gem: puppet-lint-variable_contains_upcase
+      - gem: puppet-lint-version_comparison-check
+      - gem: puppet-strings
+
+Rakefile:
+  requires:
+    - puppet-lint/tasks/puppet-lint
+    - puppet-strings/tasks
+
+spec/spec_helper.rb:
+  mock_with: ':rspec'
+  strict_level: ':error'

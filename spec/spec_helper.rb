@@ -1,37 +1,31 @@
-require 'facter'
 require 'puppetlabs_spec_helper/module_spec_helper'
 require 'rspec-puppet-facts'
 
-unless RUBY_VERSION =~ /^1\.8/
-  require 'simplecov'
-  require 'coveralls'
+begin
+  require 'spec_helper_local' if File.file?(File.join(File.dirname(__FILE__), 'spec_helper_local.rb'))
+rescue LoadError => loaderror
+  warn "Could not require spec_helper_local: #{loaderror.message}"
 end
 
 include RspecPuppetFacts
 
+default_facts = {
+  puppetversion: Puppet.version,
+  facterversion: Facter.version,
+}
+
+default_facts_path = File.expand_path(File.join(File.dirname(__FILE__), 'default_facts.yml'))
+default_module_facts_path = File.expand_path(File.join(File.dirname(__FILE__), 'default_module_facts.yml'))
+
+if File.exist?(default_facts_path) && File.readable?(default_facts_path)
+  default_facts.merge!(YAML.safe_load(File.read(default_facts_path)))
+end
+
+if File.exist?(default_module_facts_path) && File.readable?(default_module_facts_path)
+  default_facts.merge!(YAML.safe_load(File.read(default_module_facts_path)))
+end
+
 RSpec.configure do |c|
-  c.before(:each) do
-    Puppet.features.stubs(:root? => true)
-  end
-end
-
-dir = Pathname.new(__FILE__).parent
-
-Puppet[:modulepath] = File.join(dir, 'fixtures', 'modules')
-Puppet[:libdir] = File.join(Puppet[:modulepath], 'stdlib', 'lib')
-
-shared_examples :compile, :compile => true do
-  it { should compile.with_all_deps }
-end
-
-at_exit { RSpec::Puppet::Coverage.report! }
-
-unless RUBY_VERSION =~ /^1\.8/
-  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-    SimpleCov::Formatter::HTMLFormatter,
-    Coveralls::SimpleCov::Formatter
-  ]
-  SimpleCov.start do
-    add_filter 'spec/'
-  end
+  c.default_facts = default_facts
+  c.mock_with :rspec
 end
