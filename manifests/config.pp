@@ -17,7 +17,7 @@ class rngd::config {
         owner   => 0,
         group   => 0,
         mode    => '0644',
-        content => template('rngd/sysconfig.erb'),
+        content => template("${module_name}/sysconfig.erb"),
       }
 
       if $::operatingsystemmajrelease == '7' {
@@ -62,7 +62,7 @@ class rngd::config {
         owner   => 0,
         group   => 0,
         mode    => '0644',
-        content => template('rngd/default.erb'),
+        content => template("${module_name}/default.erb"),
       }
     }
     default: {
