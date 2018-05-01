@@ -19,8 +19,8 @@
 /tmp/
 /vendor/
 /convert_report.txt
-.DS_Store
 /update_report.txt
+.DS_Store
 /Puppetfile.lock
 /.librarian/
 /.tmp/
