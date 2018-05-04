@@ -58,7 +58,6 @@ Gemfile:
     ':development':
       - gem: coveralls
       - gem: github_changelog_generator
-      - gem: librarian-puppet
       - gem: puppet-lint-absolute_classname-check
       - gem: puppet-lint-alias-check
       - gem: puppet-lint-empty_string-check

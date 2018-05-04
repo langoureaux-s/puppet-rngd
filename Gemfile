@@ -36,7 +36,6 @@ group :development do
   gem "puppet-blacksmith", '~> 3.4',                      require: false, platforms: [:ruby]
   gem "coveralls",                                        require: false
   gem "github_changelog_generator",                       require: false
-  gem "librarian-puppet",                                 require: false
   gem "puppet-lint-absolute_classname-check",             require: false
   gem "puppet-lint-alias-check",                          require: false
   gem "puppet-lint-empty_string-check",                   require: false
