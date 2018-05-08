@@ -21,6 +21,3 @@
 /convert_report.txt
 /update_report.txt
 .DS_Store
-/Puppetfile.lock
-/.librarian/
-/.tmp/

@@ -1,18 +1,6 @@
 ---
-.gitignore:
-  paths:
-    - /Puppetfile.lock
-    - /.librarian/
-    - /.tmp/
-
 .gitlab-ci.yml:
   delete: true
-
-.pdkignore:
-  paths:
-    - /Puppetfile.lock
-    - /.librarian/
-    - /.tmp/
 
 .project:
   delete: true
@@ -21,8 +9,6 @@
   ruby_versions:
     - 2.4.3
   includes:
-    - env: PUPPET_GEM_VERSION="~> 4.4.0" CHECK=spec
-      rvm: 2.1.9
     - env: PUPPET_GEM_VERSION="~> 4.5.0" CHECK=spec
       rvm: 2.1.9
     - env: PUPPET_GEM_VERSION="~> 4.6.0" CHECK=spec
